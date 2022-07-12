@@ -1,0 +1,7 @@
+@use '../abstracts/variables' as *;
+
+.chosed {
+    background-image: url('../assets/svg/success.svg');
+    background-position: center;
+    background-size: cover;
+}

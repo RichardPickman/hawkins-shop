@@ -1,0 +1,166 @@
+@use '../abstracts/variables' as *;
+
+.background__image {
+    width: 100%;
+    height: 100%;
+    justify-self: center;
+    position: fixed;
+    z-index: -1;
+    background-image: linear-gradient(180deg,rgba(0,0,0,.5) 100%,rgba(0,0,0,.5) 100%), url('../assets/images/background-cart.png');
+    background-repeat: no-repeat;
+    background-position: center -40px;
+}
+
+.cart {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: 6;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.cart__content {
+    margin-top: 2rem;
+    box-shadow: 0 0 10px 2px $border-shadow;
+    background-color: rgb(0,0,0);
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.columns {
+    display: grid;
+    width: 100%;
+    height: 4rem;
+    grid-gap: 2rem;
+    grid-template-columns: 3fr repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+    border-bottom: 2px solid $border-shadow;
+    padding: 0 .5rem;
+}
+
+.orders {
+    width: 100%;
+    height: 11rem;
+    overflow-y: auto;
+    max-height: 11rem;
+    padding: 0 .5rem;
+}
+
+.item {
+    display: grid;
+    width: 100%;
+    height: 6rem;
+    grid-gap: 2rem;
+    grid-template-columns: 3fr repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__values {
+        text-align: left;
+    }
+
+    &__image {
+        width: 6rem;
+        height: 3rem;
+        border-radius: 0.3rem;
+        background-image: url('../assets/images/common/lights.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__color {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    &__quantity {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__subtotal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__delete-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 5px;
+        background-color: $border-shadow;
+    }
+
+    &__delete {
+        mask: url('../assets/svg/bin.svg') no-repeat;
+        mask-size: contain;
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: $text-color;
+        pointer-events: none;
+    }
+}
+
+.nav-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 50%;
+    height: 8rem;
+    border: 2px solid $border-shadow;
+    border-radius: 5px;
+    background-color: rgb(0,0,0);
+
+    &__subtotal {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__fee {
+        display: flex;
+        border-bottom: 2px solid $border-shadow;
+    }
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total__title {
+    display: flex;
+    align-items: center;
+}
+
+.calculate-total__subtotal {
+    display: flex;
+    align-items: center;
+}

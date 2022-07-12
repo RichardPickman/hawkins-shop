@@ -1,0 +1,50 @@
+@use '../abstracts/variables' as *;
+
+.red {
+    background-color: $main-red;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.green {
+    background-color: $main-green;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.blue {
+    background-color: $main-blue;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.yellow {
+    background-color: $main-yellow;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.black {
+    background-color: $main-black;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.brown {
+    background-color: $main-brown;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.silver {
+    background-color: $main-silver;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 0.2rem;
+}

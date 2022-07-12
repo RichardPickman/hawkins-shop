@@ -1,0 +1,35 @@
+@import '../abstracts/variables';
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+        & {
+            width: 708px;
+        }
+    }
+
+    @media (min-width: $breakpoint-phone) and (max-width: $breakpoint-tablet) {
+        & {
+            width: 100%;
+        }
+    }
+}
+
+.container-shop {
+    width: 1800px;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+        & {
+            width: 708px;
+        }
+    }
+
+    @media (min-width: $breakpoint-phone) and (max-width: $breakpoint-tablet) {
+        & {
+            width: 100%;
+        }
+    }
+}

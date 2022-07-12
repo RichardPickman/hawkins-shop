@@ -1,0 +1,17 @@
+@use '../abstracts/variables' as *;
+
+#slider-round {
+    height: 0.5rem;
+}
+
+#slider-round .noUi-connect {
+    background: $main-red;
+}
+
+#slider-round .noUi-handle {
+    height: 18px;
+    width: 18px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 9px;
+}
