@@ -1,4 +1,4 @@
 import '../sass/style.scss'
 
 
-const asd = () => console.log('asd');
+alert('Прошу проверить мою работу в последний день кроссчека. Discord: Richard(@richardpickman)')
