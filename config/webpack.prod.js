@@ -8,7 +8,6 @@ module.exports = {
   entry: {
     main: [`${paths.src}/main/main.ts`],
     products: [`${paths.src}/shop/products.ts`],
-    cart: [`${paths.src}/cart/cart.ts`],
   },
   output: {
     path: paths.build,

@@ -7,10 +7,10 @@
 @use 'base/colors';
 @use 'base/masks';
 @use 'layout/header';
+@use 'layout/footer';
 @use 'pages/main';
 @use 'pages/products';
 @use 'pages/cart';
-@use 'layout/footer';
 @use 'components/card';
 @use 'components/slider';
 @use 'components/popup';

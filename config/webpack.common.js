@@ -69,14 +69,6 @@ module.exports = {
       title: 'Shop',
       filename: 'products.html',
     }),
-    new HtmlWebpackPlugin({
-      template: `${paths.src}/cart/cart.html`,
-      favicon: `${paths.src}/assets/favicon.ico`,
-      chunks: ['cart'],
-      minify: true,
-      title: 'Shop',
-      filename: 'cart.html',
-    }),
     new StylelintPlugin(),
   ],
   commonResolve: {

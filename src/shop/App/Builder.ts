@@ -1,4 +1,4 @@
-import Cart from "../../cart/cart";
+import Cart from "./Cart";
 import { Db } from "../../types";
 
 class Builder {

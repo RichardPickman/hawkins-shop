@@ -4,7 +4,7 @@ import { Db, Options } from '../../types';
 import { statesTemplate } from './helpers';
 import Builder from './Builder';
 import Sort from '../sort';
-import Cart from '../../cart/cart';
+import Cart from './Cart';
 
 export default class Application {
     currentItems: Db[];
@@ -226,7 +226,7 @@ export default class Application {
         })
 
         document.querySelector('.low')?.addEventListener('click', () => {
-            
+
         })
     }
 }
