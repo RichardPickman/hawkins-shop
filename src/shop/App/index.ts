@@ -104,8 +104,9 @@ export default class Application {
             (first as HTMLElement)?.classList.remove('selected-filter');
             currentTarget.classList.toggle('selected-filter');
             const isAllSelected = Array.from(other as HTMLElement[]).every(item => item.classList.contains('selected-filter'));
+            const isNoneSelected = Array.from(other as HTMLElement[]).every(item => !item.classList.contains('selected-filter'));
 
-            isAllSelected && this.handleFilterStyle(e, 'all');
+            (isAllSelected || isNoneSelected) && this.handleFilterStyle(e, 'all');
         }
     }
 
