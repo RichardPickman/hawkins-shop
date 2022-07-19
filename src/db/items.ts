@@ -18,6 +18,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 0,
+        rating: 3,
     },
     {
         id: 2,
@@ -34,6 +35,7 @@ const items: Db[] = [
         price: 15500,
         discount: 15,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 3,
@@ -50,6 +52,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 4,
@@ -66,6 +69,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 5,
@@ -82,6 +86,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 6,
@@ -98,6 +103,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 7,
@@ -114,6 +120,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 0,
+        rating: 3,
     },
     {
         id: 8,
@@ -130,6 +137,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 9,
@@ -146,6 +154,7 @@ const items: Db[] = [
         price: 1000.99,
         discount: 15,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 10,
@@ -162,6 +171,7 @@ const items: Db[] = [
         price: 3000.99,
         discount: 15,
         shipping: 0,
+        rating: 3,
     },
     {
         id: 11,
@@ -178,6 +188,7 @@ const items: Db[] = [
         price: 1500.99,
         discount: 5,
         shipping: 1,
+        rating: 1,
     },
     {
         id: 12,
@@ -194,6 +205,7 @@ const items: Db[] = [
         price: 700.99,
         discount: 5,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 13,
@@ -210,6 +222,7 @@ const items: Db[] = [
         price: 1200.99,
         discount: 5,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 14,
@@ -226,6 +239,7 @@ const items: Db[] = [
         price: 1500.99,
         discount: 5,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 15,
@@ -242,6 +256,7 @@ const items: Db[] = [
         price: 2500.99,
         discount: 0,
         shipping: 1,
+        rating: 1,
     },
     {
         id: 16,
@@ -258,6 +273,7 @@ const items: Db[] = [
         price: 500.99,
         discount: 0,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 17,
@@ -274,6 +290,7 @@ const items: Db[] = [
         price: 600.99,
         discount: 0,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 18,
@@ -290,6 +307,7 @@ const items: Db[] = [
         price: 900.99,
         discount: 0,
         shipping: 0,
+        rating: 4,
     },
     {
         id: 19,
@@ -306,6 +324,7 @@ const items: Db[] = [
         price: 120.99,
         discount: 0,
         shipping: 0,
+        rating: 5,
     },
     {
         id: 20,
@@ -322,6 +341,7 @@ const items: Db[] = [
         price: 1300.99,
         discount: 0,
         shipping: 1,
+        rating: 0,
     },
     {
         id: 21,
@@ -338,6 +358,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 22,
@@ -354,6 +375,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 23,
@@ -370,6 +392,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 24,
@@ -386,6 +409,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 0,
+        rating: 3,
     },
     {
         id: 25,
@@ -402,6 +426,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 26,
@@ -418,6 +443,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 0,
     },
     {
         id: 27,
@@ -434,6 +460,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 28,
@@ -450,6 +477,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 30,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 29,
@@ -466,6 +494,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 3,
     },
     {
         id: 30,
@@ -482,6 +511,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 0,
     },
     {
         id: 31,
@@ -498,6 +528,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 32,
@@ -514,6 +545,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 33,
@@ -530,6 +562,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 0,
+        rating: 1,
     },
     {
         id: 34,
@@ -546,6 +579,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 35,
@@ -562,6 +596,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 0,
+        rating: 4,
     },
     {
         id: 36,
@@ -578,6 +613,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 0,
     },
     {
         id: 37,
@@ -594,6 +630,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 38,
@@ -610,6 +647,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 1,
     },
     {
         id: 39,
@@ -626,6 +664,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 40,
@@ -642,6 +681,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 2,
     },
     {
         id: 41,
@@ -658,6 +698,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 42,
@@ -674,6 +715,7 @@ const items: Db[] = [
         price: 80.99,
         discount: 0,
         shipping: 1,
+        rating: 3,
     },
     {
         id: 43,
@@ -690,6 +732,7 @@ const items: Db[] = [
         price: 5.99,
         discount: 10,
         shipping: 1,
+        rating: 4,
     },
     {
         id: 44,
@@ -706,6 +749,7 @@ const items: Db[] = [
         price: 15,
         discount: 15,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 45,
@@ -722,10 +766,11 @@ const items: Db[] = [
         price: 20,
         discount: 15,
         shipping: 1,
+        rating: 5,
     },
     {
         id: 46,
-        name: 'Eggos',
+        name: 'Eggo',
         thumbnail: imgs.eggos,
         characters: ['Eleven'],
         season: [2, 3],
@@ -738,6 +783,7 @@ const items: Db[] = [
         price: 4.99,
         discount: 0,
         shipping: 1,
+        rating: 5,
     },
 ];
 

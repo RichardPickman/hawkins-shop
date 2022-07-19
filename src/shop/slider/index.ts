@@ -4,8 +4,7 @@ import 'nouislider/dist/nouislider.css';
 const slider = document.querySelector('#slider-round') as HTMLElement;
 
 noUiSlider.create(slider, {
-    start: 0,
-    connect: 'lower',
+    start: [0, 3500],
     range: {
         'min': 0,
         'max': 3500

@@ -4,12 +4,8 @@ import { Db } from "../../types";
 class Builder {
     cart = new Cart();
 
-    parseToHtml(items: Db[]) {
-        const products = document.querySelector('.products') as HTMLElement;
+    parseToHtml(items: Db[], root: HTMLElement, showStyle?: string) {
         const cardItemTemp = document.querySelector('#cardItemTemp') as HTMLTemplateElement;
-        const resultLength = document.querySelector('.product-visual__result-amount') as HTMLElement;
-    
-        resultLength.textContent = `${items.length} results found`;
     
         items.forEach((item) => {
             const newsClone = cardItemTemp.content.cloneNode(true) as HTMLElement;
@@ -17,9 +13,11 @@ class Builder {
             const { price, discount } = item;
     
             (newsClone.querySelector('.card') as HTMLElement).dataset.id = item.id.toString();
+            showStyle && (newsClone.querySelector('.card') as HTMLElement).classList.add(showStyle as string);
             (newsClone.querySelector('.card__image') as HTMLElement).style.backgroundImage = `url(${item.thumbnail})`;
             (data.querySelector('.card__title') as HTMLElement).textContent = item.name;
             (data.querySelector('.card__count') as HTMLElement).textContent = item.count > 0 ? item.count.toString() : 'out of stock';
+            (data.querySelector('.card__rating') as HTMLElement).textContent = `${item.rating}/5`;
             (data.querySelector('.card__color-block') as HTMLElement).classList.add(item.color);
             if (item.color === 'mixed') {
                 (data.querySelector('.card__color-block') as HTMLElement).textContent = item.color;
@@ -35,7 +33,7 @@ class Builder {
             (newsClone.querySelector('.card') as HTMLElement).setAttribute('shipping', item.shipping.toString());
             (newsClone.querySelector('.card') as HTMLElement).setAttribute('discount', item.discount === 0 ? 'false' : 'true');
     
-            products.append(newsClone);
+            root.append(newsClone);
         });
 
         document.querySelectorAll('.card').forEach(item => item?.addEventListener('click', (e) => {

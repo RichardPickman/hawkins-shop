@@ -13,6 +13,7 @@ export type Db = {
     price: number,
     discount: number,
     shipping: number,
+    rating: number,
 }
 
 export type Options = {
@@ -25,7 +26,7 @@ export type Options = {
     sortOption?: string[],
     shipping?: number[],
     discount?: number[],
-    search?: string[]
+    search?: string[],
 }
 
 export type cartProduct = {

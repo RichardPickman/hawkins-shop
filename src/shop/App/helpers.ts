@@ -1,3 +1,4 @@
+import { Db } from '../../types'
 
 export const statesTemplate = { 
     category: [], 

@@ -1,4 +1,6 @@
 import '../sass/style.scss'
 
 
-alert('Прошу проверить мою работу в последний день кроссчека. Discord: Richard(@richardpickman)')
+document.querySelectorAll('.card').forEach(item => item.addEventListener('click', () => {
+    window.location.assign('./products.html');
+}));
