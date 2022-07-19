@@ -92,7 +92,6 @@ class Cart {
             icon.textContent = amount.toString();
             icon.style.display = 'none';
         }
-
     }
 
     _getFromCache(id: number) {
@@ -125,9 +124,7 @@ class Cart {
         const calculateTotal = this._products.reduce((acc, elem) => {
             const itemPrice = items.find(item => elem.itemId === item.id)?.price as number;
 
-            acc += itemPrice * elem.amount
-
-            return acc;
+            return acc += itemPrice * elem.amount;
         }, 0).toFixed(2);
 
         subTotal.textContent = `$${parseInt(calculateTotal)}`
