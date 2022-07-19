@@ -2,8 +2,8 @@
 
 .root {
     display: flex;
-    margin-top: 2rem;
-    gap: 2rem;
+    margin-top: 4rem;
+    gap: 1rem;
 }
 
 .product-background {
@@ -22,6 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.3rem;
 
     &__layout {
         display: flex;
@@ -63,6 +64,10 @@
         & {
             flex-direction: column;
         }
+
+        &__sort {
+            flex-wrap: wrap;
+        }
     }
 
     @media (min-width: $breakpoint-desktop) {
@@ -79,6 +84,7 @@
     gap: 1rem;
     height: fit-content;
     padding: 1rem 1rem;
+    max-width: 30%;
 
     &__title {
         color: $main-red;
@@ -87,8 +93,55 @@
 
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-gap: 0.4rem;
+
+    @media (min-width: $breakpoint-phone) and (max-width: $breakpoint-tablet) {
+        & {
+            grid-template-columns: repeat(auto-fit);
+        }
+    }
+}
+
+.search {
+    display: flex;
+    width: 100%;
+
+    &__input {
+        background-color: black;
+        border: 1px solid $border;
+        width: 85%;
+        border-right: none;
+        padding: 0 10px;
+        outline: none;
+    }
+    
+    &__clear {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15%;
+        background-color: $background-primary;
+        border: 1px solid $border;
+        padding: 0 10px;
+    }
+}
+
+.price {
+    &__labels {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.choises {
+    display: flex;
+    flex-direction: column;
+
+    &__checkboxes {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .results {
@@ -116,5 +169,3 @@
     display: flex;
     flex-direction: column;
 }
-
-// PRODUCT POPUP

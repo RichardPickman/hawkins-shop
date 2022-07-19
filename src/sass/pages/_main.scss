@@ -16,7 +16,7 @@ body {
 p {
     font-family: 'Roboto', sans-serif;
     color: $text-color;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 span {
@@ -64,15 +64,9 @@ li {
 }
 
 .dark-box {
-    margin-top: 2rem;
     box-shadow: 0 0 10px 2px $border-shadow;
     background-color: rgba(0,0,0,.6);
     border-radius: 5px;
-    padding: 0 1rem;
-}
-
-.breadcrumbs {
-    margin-top: 4rem;
 }
 
 .section__title {
@@ -98,6 +92,7 @@ li {
     background-image: linear-gradient(180deg,rgba(0,0,0,.3) 100%,rgba(0,0,0,.5) 100%), url('../assets/images/background.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: 100%;
     text-transform: uppercase;
 
     &__text {
@@ -175,12 +170,13 @@ li {
     display: flex;
     flex-direction: column;
     flex-shrink: 1;
-    gap: 1rem;
+    gap: 2rem;
+    margin-top: 2rem;
 
     &__item {
         display: flex;
-        height: 300px;
         gap: 1rem;
+        flex-direction: row;
     }
 
     &__data {
@@ -192,16 +188,44 @@ li {
     }
 
     &__image {
-        width: 50%;
-        height: 100%;
+        width: 30%;
+        height: 10rem;
         background-image: url('../assets/images/common/lights.png');
-        background-position:center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-position: center;
+        background-size: contain;
+    }
+
+    &__title {
+        height: 30%;
+        font-size: 1.5rem;
+        color: $text-color-secondary;
+    }
+
+    &__description {
+        height: 70%;
+        font-size: .8rem;
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
+    }
+
+    @media (min-width: $breakpoint-phone) and (max-width: $breakpoint-desktop) {
+        &__item {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__data {
+            text-align: center;
+            height: 50%;
+        }
     }
 }
 
-.discount {
+.contact-us {
+    margin-top: 2rem;
+
     &__content {
         display: flex;
         justify-content: space-between;
@@ -209,29 +233,53 @@ li {
     }
 
     &__description {
-        width: 50%;
+        max-width: 50%;
     }
 
     &__contact {
         display: flex;
-        max-width: 50%;
         height: 2rem;
+        max-width: 50%;
         box-shadow: 0 0 5px 1px $border-shadow;
     }
 
     &__email {
-        background-color: black;
-        border: 1px solid $border;
-        width: auto;
-        border-right: none;
+        width: 70%;
         padding: 0 10px;
         outline: none;
+        border-right: none;
+        background-color: black;
+        border: 1px solid $border;
     }
 
     &__subscribe {
+        width: 30%;
         background-color: black;
         border: 1px solid $border;
         padding: 0 10px;
+        font-size: 100%;
+        flex-shrink: 2;
+    }
+
+    @media (min-width: $breakpoint-phone) and (max-width: $breakpoint-tablet) {
+        &__content {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        &__description {
+            max-width: 50%;
+            text-align: center;
+        }
+    
+        &__contact {
+            display: flex;
+            height: 2rem;
+            max-width: 50%;
+            box-shadow: 0 0 5px 1px $border-shadow;
+        }
     }
 }
 
@@ -239,7 +287,6 @@ li {
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
-    padding: 1rem 1rem;
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
@@ -249,11 +296,10 @@ li {
         gap: 1rem;
     }
 
-    &__face {
-        mask: url('../assets/svg/facebook.svg') no-repeat;
+    &__rs {
+        mask: url('../assets/svg/rs.svg') no-repeat;
         mask-size: contain;
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 3.5rem;
         background-color: $main-red;
     }
 
