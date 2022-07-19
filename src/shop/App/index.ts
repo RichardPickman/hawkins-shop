@@ -62,17 +62,15 @@ export default class Application {
                 filter?.classList.add('selected-filter');
             }
 
-            if (key === 'discount' || key === 'shipping') {
-                if (value.length > 0) {
-                    (document.querySelector(`.choises__${key}-input`) as HTMLInputElement).checked = true;
-                }
+            if ((key === 'discount' || key === 'shipping') && (value.length > 0)) {
+                (document.querySelector(`.choises__${key}-input`) as HTMLInputElement).checked = true;
             }
         });
 
-        const getLastPrice: number[] = ((this.states?.price as []).length > 0 ? this.states?.price : [0, 3500]) as number[];
-        (document.querySelector('.slider-min') as HTMLElement).textContent = getLastPrice[0].toString();
-        (document.querySelector('.slider-max') as HTMLElement).textContent = getLastPrice[1].toString();
-        (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.set(getLastPrice);
+        const [min, max]: number[] = ((this.states?.price as []).length > 0 ? this.states?.price : [0, 3500]) as number[];
+        (document.querySelector('.slider-min') as HTMLElement).textContent = min.toString();
+        (document.querySelector('.slider-max') as HTMLElement).textContent = max.toString();
+        (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.set([min, max]);
         (document.querySelector('.search__input') as HTMLInputElement).value = this.states.search?.join('') as string;
     }
 
@@ -158,7 +156,17 @@ export default class Application {
 
         const sortOption = [...document.querySelector('.product-visual__sort')?.children as HTMLCollection];
 
+        const inputHandler = () => {
+            const inputText = (document.querySelector('.search__input') as HTMLInputElement).value as string;
+            
+            this.clearState('search');
+            inputText && this.states.search?.push(inputText);
+            this.updateProducts();
+        }
+
         (document.querySelector('.search__input') as HTMLElement)?.focus();
+        document.querySelector('.search__input')?.addEventListener('submit', inputHandler);
+        document.querySelector('.search__input')?.addEventListener('change', inputHandler);
 
         (document.querySelector('.search__clear') as HTMLElement)?.addEventListener('click', () => {
             this.clearState('search');
@@ -199,11 +207,9 @@ export default class Application {
         });
 
         (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.on('update', () => {
-            const labelMin = document.querySelector('.slider-min') as HTMLElement;
-            const labelMax = document.querySelector('.slider-max') as HTMLElement;
             const [min, max] = (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.get(true) as number[];
-            labelMin.textContent = min.toFixed(2).toString();
-            labelMax.textContent = max.toFixed(2).toString();
+            (document.querySelector('.slider-min') as HTMLElement).textContent = min.toFixed(2).toString();
+            (document.querySelector('.slider-max') as HTMLElement).textContent = max.toFixed(2).toString();
 
             this.states.price = [min, max];
             
@@ -220,22 +226,6 @@ export default class Application {
             document.querySelector('.products')?.classList.add('product-list');
             this.showStyle = 'card-list';
             document.querySelectorAll('.card').forEach(item => item.classList.add('card-list'));
-        })
-
-        document.querySelector('.search__input')?.addEventListener('submit', () => {
-            const inputText = (document.querySelector('.search__input') as HTMLInputElement).value as string;
-            
-            this.clearState('search');
-            inputText && this.states.search?.push(inputText);
-            this.updateProducts();
-        })
-
-        document.querySelector('.search__input')?.addEventListener('change', () => {
-            const inputText = (document.querySelector('.search__input') as HTMLInputElement).value as string;
-            
-            this.clearState('search');
-            inputText && this.states.search?.push(inputText);
-            this.updateProducts();
         })
 
         sortOption.forEach(selector => selector.addEventListener('click', (e) => {
