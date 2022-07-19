@@ -12,6 +12,8 @@ export default class Application {
     sort = new Sort();
     builder = new Builder();
     cart = new Cart();
+    showStyle: string = '';
+    sortItems = 'low';
 
     constructor() {
         const hasStates = localStorage.getItem('filters');
@@ -23,15 +25,11 @@ export default class Application {
 
     render() {
         const product = document.querySelector('.products') as HTMLElement;
-        const children = Array.from(product?.childNodes);
-        const cardsAmount = children.length;
+        const resultLength = document.querySelector('.product-visual__result-amount') as HTMLElement;
     
-        for (let i = 0; i < cardsAmount; i++) {
-            children[i].remove();
-        }
-
-        this.builder.parseToHtml(this.currentItems);
-        localStorage.setItem('filters', JSON.stringify(this.states));
+        Array.from(product?.childNodes).forEach(elem => elem.remove());
+        this.builder.parseToHtml(this.currentItems, product, this.showStyle);
+        resultLength.textContent = `${this.currentItems.length} results found`;
     }
 
     clearState(item: string) {
@@ -42,9 +40,12 @@ export default class Application {
         this.states = state;
     }
 
-    updateProducts() {
-        this.currentItems = this.sort.filter(items, this.states);
+    updateProducts(saveLocal: boolean = true) {
+        this.currentItems = this.sort.filter(items, this.states, this.sortItems);
         this.render();
+        
+        saveLocal && localStorage.setItem('filters', JSON.stringify(this.states));
+        !saveLocal && localStorage.removeItem('filters');
     }
 
     async handleFirstLoad() {
@@ -63,14 +64,16 @@ export default class Application {
 
             if (key === 'discount' || key === 'shipping') {
                 if (value.length > 0) {
-                    (document.querySelector(`.${key}`) as HTMLInputElement).checked = true;
+                    (document.querySelector(`.choises__${key}-input`) as HTMLInputElement).checked = true;
                 }
             }
         });
 
-        const getLastPrice = this.states?.price ? this.states?.price[0] : 0;
-        (document.querySelector('.slider-label') as HTMLElement).textContent = getLastPrice.toString();
+        const getLastPrice: number[] = ((this.states?.price as []).length > 0 ? this.states?.price : [0, 3500]) as number[];
+        (document.querySelector('.slider-min') as HTMLElement).textContent = getLastPrice[0].toString();
+        (document.querySelector('.slider-max') as HTMLElement).textContent = getLastPrice[1].toString();
         (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.set(getLastPrice);
+        (document.querySelector('.search__input') as HTMLInputElement).value = this.states.search?.join('') as string;
     }
 
     handleItem(key: string, item: unknown) {
@@ -86,24 +89,21 @@ export default class Application {
         this.states = state;
     }
 
-    handleFilterStyle(e: Event, action?: string) {
+    handleFilterStyle(e: Event, action?: 'all' | '0') {
         const currentTarget = e.target as HTMLElement;
         const parent = currentTarget.parentNode as HTMLElement;
-        const children = parent?.childNodes;
+        const [first, ...other] = parent?.childNodes;
 
         if (action) {
-            children?.forEach(node => (node as HTMLElement).classList.remove('selected-filter', 'chosed'));
-            (children[0] as HTMLElement).classList.add('selected-filter');
-            
+            other?.forEach(node => (node as HTMLElement).classList.remove('selected-filter', 'chosed'));
+            (first as HTMLElement).classList.add('selected-filter');
             this.clearState(parent.dataset.filter as string);
-
             this.updateProducts();
             
         } else {
-            (parent.firstChild as HTMLElement)?.classList.remove('selected-filter');
+            (first as HTMLElement)?.classList.remove('selected-filter');
             currentTarget.classList.toggle('selected-filter');
-            const isAllSelected = Array.from(parent.children).slice(1)
-            .every(item => item.classList.contains('selected-filter'));
+            const isAllSelected = Array.from(other as HTMLElement[]).every(item => item.classList.contains('selected-filter'));
 
             isAllSelected && this.handleFilterStyle(e, 'all');
         }
@@ -138,9 +138,9 @@ export default class Application {
         const ul = filter?.querySelectorAll('ul');
 
         ul?.forEach(item => {
-            const allLi = Array.from(item.children);
-            allLi.forEach(node => (node as HTMLElement).classList.remove('selected-filter', 'chosed'))
-            allLi[0].classList.add('selected-filter')
+            const [first, ...other] = Array.from(item.children);
+            other.forEach(node => (node as HTMLElement).classList.remove('selected-filter', 'chosed'))
+            first.classList.add('selected-filter')
         })
 
     }
@@ -155,6 +155,17 @@ export default class Application {
 
         const colors = [...document.querySelectorAll('.color-circle')];
 
+        const sortOption = [...document.querySelector('.product-visual__sort')?.children as HTMLCollection];
+
+        (document.querySelector('.search__input') as HTMLElement)?.focus();
+
+        (document.querySelector('.search__clear') as HTMLElement)?.addEventListener('click', () => {
+            this.clearState('search');
+            (document.querySelector('.search__input') as HTMLInputElement).value = '';
+
+            this.updateProducts();
+        });
+
         selectorsArray.forEach(selector => selector.addEventListener('click', (e) => {
             const parent = selector.parentNode as HTMLElement;
             const filter = parent?.dataset.filter as string;
@@ -166,67 +177,73 @@ export default class Application {
             (e.target as HTMLElement).classList.toggle('chosed');
         }));
 
-        document.querySelector('.discount')?.addEventListener('change', (e) => {
+        document.querySelector('.choises__discount-input')?.addEventListener('change', (e) => {
             this.handleCheckbox(e, this.states.discount);
         });
 
-        document.querySelector('.shipping')?.addEventListener('change', (e) => {
+        document.querySelector('.choises__shipping-input')?.addEventListener('change', (e) => {
             this.handleCheckbox(e, this.states.shipping);
         });
         
-        document.querySelector('.reset-btn')?.addEventListener('click', () => {
-            Object.entries(this.states).forEach(([k, v]) => this.clearState(k));
-            localStorage.removeItem('filters');
+        document.querySelector('.reset-btn')?.addEventListener('click', (e) => {
+            Object.keys(this.states).forEach((k) => this.clearState(k));
             
             this.currentItems = items;
-            (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.set(0);
+            (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.set([0, 3500]);
 
             this.setAllStyle();
             document.querySelectorAll('input').forEach(item => item.checked = false);
-            this.updateProducts();
-            
+            (document.querySelector('.search__input') as HTMLInputElement).value = '';
+            this.updateProducts(false);
         });
 
         (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.on('update', () => {
-            const label = document.querySelector('.slider-label') as HTMLElement;
-            const currentData = (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.get() as string;
-            label.textContent = currentData;
+            const labelMin = document.querySelector('.slider-min') as HTMLElement;
+            const labelMax = document.querySelector('.slider-max') as HTMLElement;
+            const [min, max] = (document.querySelector('#slider-round') as noUiSlider.target).noUiSlider?.get(true) as number[];
+            labelMin.textContent = min.toFixed(2).toString();
+            labelMax.textContent = max.toFixed(2).toString();
 
-            this.states.price = [parseInt(currentData)];
+            this.states.price = [min, max];
             
             this.updateProducts();
         });
 
         document.querySelector('.product-visual__blocks')?.addEventListener('click', () => {
             document.querySelector('.products')?.classList.remove('product-list');
-
+            this.showStyle = '';
             document.querySelectorAll('.card').forEach(item => item.classList.remove('card-list'));
         })
 
         document.querySelector('.product-visual__list')?.addEventListener('click', () => {
             document.querySelector('.products')?.classList.add('product-list');
-
+            this.showStyle = 'card-list';
             document.querySelectorAll('.card').forEach(item => item.classList.add('card-list'));
         })
 
-        document.querySelector('.searchInput')?.addEventListener('submit', () => {
-            const inputText = (document.querySelector('.searchInput') as HTMLInputElement).value as string;
+        document.querySelector('.search__input')?.addEventListener('submit', () => {
+            const inputText = (document.querySelector('.search__input') as HTMLInputElement).value as string;
             
             this.clearState('search');
             inputText && this.states.search?.push(inputText);
             this.updateProducts();
         })
 
-        document.querySelector('.searchInput')?.addEventListener('change', () => {
-            const inputText = (document.querySelector('.searchInput') as HTMLInputElement).value as string;
+        document.querySelector('.search__input')?.addEventListener('change', () => {
+            const inputText = (document.querySelector('.search__input') as HTMLInputElement).value as string;
             
             this.clearState('search');
             inputText && this.states.search?.push(inputText);
             this.updateProducts();
         })
 
-        document.querySelector('.low')?.addEventListener('click', () => {
-
-        })
+        sortOption.forEach(selector => selector.addEventListener('click', (e) => {
+            const parent = (e.target as HTMLElement).parentElement as HTMLElement;
+            Array.from(parent.children).forEach(item => item.classList.remove('selected-filter'));
+            this.sortItems = (e.target as HTMLElement).dataset.sort as string;
+            this.handleFilterStyle(e)
+            
+            this.updateProducts();
+        }));
     }
 }
