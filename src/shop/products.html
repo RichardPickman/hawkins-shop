@@ -26,13 +26,11 @@
     <main class="main-shop">
         <div class="product-background"></div>
         <div class="popup-background"></div>
-        <section class="breadcrumbs">
-            Home / Products
-        </section>
         <section class="root">
             <aside class="filters dark-box">
                 <div class="search">
-                    <input class="searchInput" type="text" placeholder="Search">
+                    <input type="text" name="Enter email" class="search__input" placeholder="Search">
+                    <button type="submit" class="search__clear">X</button>
                 </div>
                 <div class="categories">
                     <h3 class="filters__title">Category</h3>
@@ -92,16 +90,23 @@
                 </div>
                 <div class="price">
                     <h3 class="filters__title">Price</h3>
-                    <label class="slider-label" for="slider">0</label>
+                    <div class="price__labels">
+                        <label class="slider-min" for="slider">0</label>
+                        <label class="slider-max" for="slider">0</label>
+                    </div>
                     <div name="slider" id="slider-round"></div>
                 </div>
                 <div class="choises">
                     <h3 class="filters__title">Choises</h3>
-                    <div>
-                        <label for="shipping">Free shipping</label>
-                        <input class="shipping" name="shipping" type="checkbox">
-                        <label for="discount">Discount</label>
-                        <input class="discount" name="discount" type="checkbox">
+                    <div class="choises__checkboxes">
+                        <div class="choises__shipping">
+                            <label for="shipping">Free shipping</label>
+                            <input class="choises__shipping-input" name="shipping" type="checkbox">
+                        </div>
+                        <div class="choises__discount">
+                            <label for="discount">Discount</label>
+                            <input class="choises__discount-input" name="discount" type="checkbox">
+                        </div>
                     </div>
                 </div>
                 <div class="btn reset-btn">Reset</div>
@@ -116,12 +121,13 @@
                         <p>25 result found</p>
                     </div>
                     <div class="product-visual__separator"></div>
-                    <div class="product-visual__sort">
-                        <div class="product-visual__sort-low" value="low">Price (Lowest)</div>
-                        <div class="product-visual__sort-high" value="high">Price (Highest)</div>
-                        <div class="product-visual__sort-desc" value="descending">A-Z</div>
-                        <div class="product-visual__sort-asc" value="ascending">Z-A</div>
-                    </div>
+                    <ul class="product-visual__sort">
+                        <li class="product-visual__sort-low selected-filter" data-sort="low">Price (Lowest)</li>
+                        <li class="product-visual__sort-high" data-sort="high">Price (Highest)</li>
+                        <li class="product-visual__sort-desc" data-sort="descending">A-Z</li>
+                        <li class="product-visual__sort-asc" data-sort="ascending">Z-A</li>
+                        <li class="product-visual__sort-asc" data-sort="rate">Rating</li>
+                    </ul>
                 </div>
                 <div class="products"></div>
             </div>
@@ -130,16 +136,14 @@
             <div class="title-image"></div>
             <h2 class="title"> - Fan store - </h2>
             <div class="contacts__links">
-                <a href="https://facebook.com" class="contacts__face"></a>
-                <a href="https://instagram.com" class="contacts__inst"></a>
-                <a href="https://github.com" class="contacts__git"></a>
+                <a href="https://rs.school/js/" target="_blank" class="contacts__rs"></a>
+                <a href="https://instagram.com" target="_blank" class="contacts__inst"></a>
+                <a href="https://github.com/RichardPickman" target="_blank" class="contacts__git"></a>
             </div>
         </sections>
     </main>
     <footer class="footer">
-        <p>2022</p>
-        <p>Hawkins Shop</p>
-        <p>RichardPickman</p>
+        STRANGER THINGS ™/ © Rolling Scopes School 2022
     </footer>
 </body>
 
@@ -152,17 +156,19 @@
         <div class="card__data">
             <div class="card__headers">
                 <h4 class="card__title"></h4>
-                <div class="card__color">
-                    <p>Color:</p> 
-                    <div class="card__color-block"></div>
-                </div>
             </div>
-            <div class="card__cash">
-                <p class="card__stock">Stock: <span class="card__count"></span></p>
-                <p>
-                    <span class="card__discount-price"></span>
-                    <span class="card__price"></span>
-                </p>
+            <div class="card__main">
+                <div class="card__color-stock">
+                    <div class="card__color">
+                        <p>Color:</p> 
+                        <div class="card__color-block"></div>
+                    </div>
+                    <p class="card__stock">Stock: <span class="card__count"></span></p>
+                </div>
+                <div class="card__rating-price">
+                    <p>Rating: <span class="card__rating"></span></p> 
+                    <p><span class="card__discount-price"></span><span class="card__price"></span></p>
+                </div>
             </div>
         </div>
     </div>
@@ -173,7 +179,7 @@
         <div class="popup__block">
             <div class="popup__image"></div>
             <div class="popup__data">
-                <h4 class="popup__title"></h4>
+                <h2 class="popup__title"></h2>
                 <div class="popup__info">
                     <div class="popup__color">Color: <div class="popup__color-block"></div></div>
                     <div>Characters: <span class="popup__chars"></span></div>
@@ -207,7 +213,7 @@
         <div class="sum">
             <div class="calculate-total">
                 <div class="calculate-total__subtotal"> <span>Subtotal:</span> <div class="calculate-total__subtotal-price"></div> </div>
-                <div class="calculate-total__fee"> <span>Shipping Fee :</span> $5.34 </div>
+                <div class="calculate-total__fee"> <span>Shipping Fee :</span>$5.34</div>
             </div>
             <div class="total">
                 <h3 class="total__title"><span>Order Total :</span><div class="total__sum"></div></h3>
@@ -229,11 +235,11 @@
         <div class="item__price">$30.99</div>
         <div class="item__quantity">
             <div class="item__minus">-</div>
-            <p class="item__amount">5</p>
+            <div class="item__amount">5</div>
             <div class="item__plus">+</div>
         </div>
         <div class="item__subtotal">
-            <p class="item__sum">$154.95</p>
+            <div class="item__sum">$154.95</div>
             <div class="item__delete-btn">
                 <div class="item__delete"></div>
             </div>
