@@ -52,6 +52,8 @@ class Builder {
             (document.querySelector('.popup__btn') as HTMLElement).addEventListener('click', (e) => {
                 const itemId = (e.target as HTMLElement).parentElement?.dataset.id as string;
                 const findItem = items.find(item => item.id === parseInt(itemId)) as Db;
+                
+                (document.querySelector(`[data-id="${findItem.id}"]`) as HTMLElement).classList.add('appendToCart');
 
                 this.cart.add(findItem);
             });

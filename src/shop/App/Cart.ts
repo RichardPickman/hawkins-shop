@@ -41,6 +41,8 @@ class Cart {
         this._changeTotal();
         this._addItemStyle(this._getAmountProducts());
 
+        (document.querySelector(`[data-id="${id}"]`) as HTMLElement).classList.remove('appendToCart');
+
         return;
     }
 
@@ -149,7 +151,7 @@ class Cart {
         
         orders.append(newsClone);
 
-        (data.querySelector('.item__minus') as HTMLElement).addEventListener('click', (e) => {        
+        (data.querySelector('.item__minus') as HTMLElement).addEventListener('click', (e) => {
             const item = (e.target as HTMLElement).parentElement?.parentElement;
             const id = item?.dataset.cardId as string;
 
